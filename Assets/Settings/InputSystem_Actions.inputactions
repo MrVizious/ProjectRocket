@@ -1034,6 +1034,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "Both Thrusters",
+                    "type": "Button",
+                    "id": "5b958a64-c22e-40f3-8310-eaeb76ef7d3e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -1056,6 +1066,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Right Thruster",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98d3c6a9-2cf4-407b-b0de-133af2bff572",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Both Thrusters",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
