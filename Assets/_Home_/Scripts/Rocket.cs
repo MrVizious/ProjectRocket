@@ -1,16 +1,28 @@
 using UnityEngine;
+using EventfulData;
 
 [RequireComponent(typeof(Collider2D))]
 public class Rocket : MonoBehaviour
 {
-    private Collider2D _col;
-    private Collider2D col
+
+    public float maxLife = 100f;
+
+    [SerializeField]
+    private float _currentLife;
+    public float currentLife
     {
-        get
+        get => _currentLife;
+        set
         {
-            if (_col == null) TryGetComponent<Collider2D>(out _col);
-            return _col;
+            _currentLife = value;
+            currentLifePercentage.value = _currentLife / Mathf.Max(maxLife, 0.0001f);
         }
+    }
+    public EventfulData<float> currentLifePercentage = new();
+
+    private void Awake()
+    {
+        currentLife = maxLife;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,5 +32,14 @@ public class Rocket : MonoBehaviour
         {
             collectedCoin.Collect();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        currentLife -= other.relativeVelocity.magnitude;
+    }
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        currentLife -= other.relativeVelocity.magnitude;
     }
 }
