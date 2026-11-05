@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Sirenix.Serialization;
-using UltEvents;
 using UnityEngine;
 
 public class CollectiblesCompletionController : CompletionController
@@ -30,5 +28,4 @@ public class CollectiblesCompletionController : CompletionController
         _collectiblesToGet.Remove(collectedCollectible);
         if (_collectiblesToGet.Count <= 0) Complete();
     }
-
 }

@@ -226,7 +226,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.40807
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 392767109}
   - component: {fileID: 392767108}
   - component: {fileID: 392767107}
+  - component: {fileID: 392767110}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -535,7 +536,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 7.40807
+    OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -568,6 +569,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &392767110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392767105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fafd30dfe7fc14c870329016455fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedBasedCameraZoom
+  cam: {fileID: 392767108}
+  rb: {fileID: 1718401750}
+  minSpeed: 2
+  maxSpeed: 18
+  minOrthographicSize: 5
+  maxOrthographicSize: 10
+  cameraAdjustSpeed: 1
 --- !u!1 &448179317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,6 +2275,52 @@ MonoBehaviour:
           _Z: 0
           _W: 0
           _Object: {fileID: 0}
+--- !u!1 &1749105231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1749105233}
+  - component: {fileID: 1749105232}
+  m_Layer: 0
+  m_Name: Arrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1749105232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749105231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088551ce1e24c044b8fe008ca0796cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenArrow
+  player: {fileID: 1718401752}
+  target: {fileID: 876765638}
+--- !u!4 &1749105233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749105231}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.32311, y: 4.32672, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1852610721
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,7 +2683,6 @@ MonoBehaviour:
   collectiblesToGet:
   - {fileID: 876765635}
   - {fileID: 507172465}
-  - {fileID: 0}
   - {fileID: 1586704007}
 --- !u!4 &2065856567
 Transform:
@@ -2649,3 +2714,4 @@ SceneRoots:
   - {fileID: 1586704006}
   - {fileID: 2011970054}
   - {fileID: 2065856567}
+  - {fileID: 1749105233}
