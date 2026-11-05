@@ -2430,6 +2430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rocket
   maxLife: 100
+  leftThruster: {fileID: 1453942966}
+  rightThruster: {fileID: 1272443110}
   _currentLife: 100
   currentLifePercentage:
     debug: 0
@@ -2447,6 +2449,7 @@ MonoBehaviour:
           _Z: 0
           _W: 0
           _Object: {fileID: 0}
+  _acceptsInputs: 1
 --- !u!1 &1749105231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,7 +2484,7 @@ MonoBehaviour:
   targetProvider: {fileID: 192390174}
   renderer: {fileID: 836717084}
   pivot: {fileID: 1707871649}
-  minScale: 0.1
+  minScale: 0.3
   maxScale: 3
   minDistance: 5
   maxDistance: 20
@@ -2576,6 +2579,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1939031513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1939031515}
+  - component: {fileID: 1939031514}
+  m_Layer: 0
+  m_Name: LevelController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1939031514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939031513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2807ef64bb32944bcb06371ce43245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelController
+  completionController: {fileID: 2065856566}
+  rocket: {fileID: 1718401755}
+--- !u!4 &1939031515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939031513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.20966, y: 0.92154, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1947553546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2696,9 +2745,9 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1453942966}
-        m_TargetAssemblyTypeName: Thruster, Assembly-CSharp
-        m_MethodName: ProcessInput
+      - m_Target: {fileID: 1718401755}
+        m_TargetAssemblyTypeName: Rocket, Assembly-CSharp
+        m_MethodName: ProcessLeftThrusterInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2712,9 +2761,9 @@ MonoBehaviour:
     m_ActionName: 'Rocket/Left Thruster[/Keyboard/a]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1272443110}
-        m_TargetAssemblyTypeName: Thruster, Assembly-CSharp
-        m_MethodName: ProcessInput
+      - m_Target: {fileID: 1718401755}
+        m_TargetAssemblyTypeName: Rocket, Assembly-CSharp
+        m_MethodName: ProcessRightThrusterInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2730,6 +2779,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5b958a64-c22e-40f3-8310-eaeb76ef7d3e
     m_ActionName: 'Rocket/Both Thrusters[/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1939031514}
+        m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
+        m_MethodName: Begin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ad08f5d8-d83e-4f93-bba5-25baad985ebe
+    m_ActionName: 'Rocket/Interact[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Rocket
@@ -2896,3 +2961,4 @@ SceneRoots:
   - {fileID: 2065856567}
   - {fileID: 1749105233}
   - {fileID: 192390175}
+  - {fileID: 1939031515}

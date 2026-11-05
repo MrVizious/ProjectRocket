@@ -17,11 +17,7 @@ public class Thruster : MonoBehaviour
         }
     }
     private bool _thrusting;
-    public void ProcessInput(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed) StartThrust();
-        else if (ctx.canceled) StopThrust();
-    }
+
     public void StartThrust()
     {
         _thrusting = true;

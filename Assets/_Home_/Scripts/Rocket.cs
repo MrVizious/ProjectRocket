@@ -1,11 +1,13 @@
 using UnityEngine;
 using EventfulData;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Rocket : MonoBehaviour
 {
-
     public float maxLife = 100f;
+    public Thruster leftThruster, rightThruster;
 
     [SerializeField]
     private float _currentLife;
@@ -19,6 +21,21 @@ public class Rocket : MonoBehaviour
         }
     }
     public EventfulData<float> currentLifePercentage = new();
+    [SerializeField]
+    private bool _acceptsInputs = true;
+    public bool acceptsInputs
+    {
+        get => _acceptsInputs;
+        set
+        {
+            _acceptsInputs = value;
+            if (value == false)
+            {
+                leftThruster?.StopThrust();
+                rightThruster?.StopThrust();
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -41,5 +58,19 @@ public class Rocket : MonoBehaviour
     private void OnCollisionStay2D(Collision2D other)
     {
         currentLife -= other.relativeVelocity.magnitude;
+    }
+
+    public void ProcessLeftThrusterInput(InputAction.CallbackContext ctx)
+    {
+        if (!acceptsInputs) return;
+        if (ctx.performed || ctx.started) leftThruster?.StartThrust();
+        else if (ctx.canceled) leftThruster?.StopThrust();
+    }
+
+    public void ProcessRightThrusterInput(InputAction.CallbackContext ctx)
+    {
+        if (!acceptsInputs) return;
+        if (ctx.performed || ctx.started) rightThruster?.StartThrust();
+        else if (ctx.canceled) rightThruster?.StopThrust();
     }
 }
