@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class Coin : Collectible<Coin>
+public class Coin : Collectible
 {
-    public override Coin Collect()
+    public override Collectible Collect()
     {
+        base.Collect();
         Destroy(gameObject);
         return this;
     }

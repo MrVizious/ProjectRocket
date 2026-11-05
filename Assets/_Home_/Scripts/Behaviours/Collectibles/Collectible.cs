@@ -1,8 +1,10 @@
+using UltEvents;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public abstract class Collectible<T> : MonoBehaviour where T : Collectible<T>
+public abstract class Collectible : MonoBehaviour
 {
+    public UltEvent<Collectible> collected = new();
     private Collider2D _trigger;
     private Collider2D trigger
     {
@@ -13,5 +15,9 @@ public abstract class Collectible<T> : MonoBehaviour where T : Collectible<T>
         }
     }
 
-    public abstract T Collect();
+    public virtual Collectible Collect()
+    {
+        collected.Invoke(this);
+        return this;
+    }
 }
