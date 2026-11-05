@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class ScreenArrow : MonoBehaviour
 {
-    public Transform player, target;
+    public Transform player;
     public Camera cam;
     public float margin = 0f;
+    public TargetProvider targetProvider;
+
+    private Transform target;
     private SpriteRenderer _renderer;
     private SpriteRenderer renderer
     {
@@ -17,10 +20,12 @@ public class ScreenArrow : MonoBehaviour
 
     private void Update()
     {
+        target = targetProvider.GetTarget(player);
         PlaceArrow();
     }
     private void PlaceArrow()
     {
+        if (target == null) return;
         Vector2 playerScreenPosition = cam.WorldToScreenPoint(player.position);
         Vector2 targetScreenPosition = cam.WorldToScreenPoint(target.position);
         Vector2 playerToTargetScreenVector = targetScreenPosition - playerScreenPosition;
