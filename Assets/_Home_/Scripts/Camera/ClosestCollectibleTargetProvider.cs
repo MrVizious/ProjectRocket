@@ -17,8 +17,8 @@ public class ClosestCollectibleTargetProvider : TargetProvider
 
     public override Transform GetTarget(Transform origin)
     {
-        if (collectibles.Count <= 0) return null;
         collectibles.RemoveAll(c => c == null);
+        if (collectibles.Count <= 0) return null;
         float closestSqrDistance = Mathf.Infinity;
         Collectible closestCollectible = null;
 
