@@ -1,22 +1,20 @@
 using UnityEngine;
+using UtilityMethods;
 
 public class ScreenArrow : MonoBehaviour
 {
+    [Header("Position finder")]
     public Transform player;
     public Camera cam;
-    public float margin = 0f;
     public TargetProvider targetProvider;
 
+    [Header("Visibility")]
+    public SpriteRenderer renderer;
+    public Transform pivot;
+    public float minScale, maxScale;
+    public float minDistance, maxDistance;
+
     private Transform target;
-    private SpriteRenderer _renderer;
-    private SpriteRenderer renderer
-    {
-        get
-        {
-            if (_renderer == null) TryGetComponent<SpriteRenderer>(out _renderer);
-            return _renderer;
-        }
-    }
 
     private void Update()
     {
@@ -26,16 +24,16 @@ public class ScreenArrow : MonoBehaviour
     private void PlaceArrow()
     {
         if (target == null) return;
-        Vector2 playerScreenPosition = cam.WorldToScreenPoint(player.position);
-        Vector2 targetScreenPosition = cam.WorldToScreenPoint(target.position);
-        Vector2 playerToTargetScreenVector = targetScreenPosition - playerScreenPosition;
 
-        Vector2 hit = default;
+        Vector2 hit;
         TryGetCameraIntersection(player.position, target.position, out hit);
         if (hit != default)
         {
             renderer.enabled = true;
             transform.position = hit;
+            transform.up = (target.position - player.position).normalized;
+            float arrowToTargetDistance = Vector2.Distance(target.position, transform.position);
+            pivot.localScale = Vector3.one * Math.Remap(arrowToTargetDistance, minDistance, maxDistance, maxScale, minScale, true);
         }
         else
         {
@@ -48,8 +46,8 @@ public class ScreenArrow : MonoBehaviour
         hit = default;
 
         // Camera bounds in world space (orthographic, no rotation)
-        float halfH = cam.orthographicSize - margin;
-        float halfW = cam.orthographicSize * cam.aspect - margin;
+        float halfH = cam.orthographicSize;
+        float halfW = cam.orthographicSize * cam.aspect;
         Vector2 c = cam.transform.position;
 
         Vector2 bl = new Vector2(c.x - halfW, c.y - halfH);
