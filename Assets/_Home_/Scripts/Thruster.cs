@@ -17,16 +17,16 @@ public class Thruster : MonoBehaviour
             return _rb;
         }
     }
-    [SerializeField]
     private bool _wantsToThrust;
     private bool _shouldThrust => _wantsToThrust && canThrust;
 
-    public void StartThrust()
+    public bool TryToStartThrusting()
     {
         _wantsToThrust = true;
+        return _shouldThrust;
     }
 
-    public void StopThrust()
+    public void TryToStopThrusting()
     {
         _wantsToThrust = false;
     }

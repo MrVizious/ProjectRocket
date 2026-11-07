@@ -59,13 +59,13 @@ public class Rocket : MonoBehaviour
 
     public void ProcessLeftThrusterInput(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed || ctx.started) leftThruster?.StartThrust();
-        else if (ctx.canceled) leftThruster?.StopThrust();
+        if (ctx.performed || ctx.started) leftThruster?.TryToStartThrusting();
+        else if (ctx.canceled) leftThruster?.TryToStopThrusting();
     }
 
     public void ProcessRightThrusterInput(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed || ctx.started) rightThruster?.StartThrust();
-        else if (ctx.canceled) rightThruster?.StopThrust();
+        if (ctx.performed || ctx.started) rightThruster?.TryToStartThrusting();
+        else if (ctx.canceled) rightThruster?.TryToStopThrusting();
     }
 }
