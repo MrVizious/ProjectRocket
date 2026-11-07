@@ -5,6 +5,7 @@ public class LevelController : MonoBehaviour
 {
     public CompletionController completionController;
     public Rocket rocket;
+    private bool _levelBegan = false;
 
     System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
@@ -17,6 +18,8 @@ public class LevelController : MonoBehaviour
     [Button]
     public void Begin()
     {
+        if (_levelBegan) return;
+        _levelBegan = true;
         rocket.acceptsInputs = true;
         Debug.Log($"Level began!", this);
         stopwatch.Restart();

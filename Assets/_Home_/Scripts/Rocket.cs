@@ -29,11 +29,8 @@ public class Rocket : MonoBehaviour
         set
         {
             _acceptsInputs = value;
-            if (value == false)
-            {
-                leftThruster?.StopThrust();
-                rightThruster?.StopThrust();
-            }
+            leftThruster.canThrust = value;
+            rightThruster.canThrust = value;
         }
     }
 
@@ -62,14 +59,12 @@ public class Rocket : MonoBehaviour
 
     public void ProcessLeftThrusterInput(InputAction.CallbackContext ctx)
     {
-        if (!acceptsInputs) return;
         if (ctx.performed || ctx.started) leftThruster?.StartThrust();
         else if (ctx.canceled) leftThruster?.StopThrust();
     }
 
     public void ProcessRightThrusterInput(InputAction.CallbackContext ctx)
     {
-        if (!acceptsInputs) return;
         if (ctx.performed || ctx.started) rightThruster?.StartThrust();
         else if (ctx.canceled) rightThruster?.StopThrust();
     }

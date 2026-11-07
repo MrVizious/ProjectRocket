@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class Thruster : MonoBehaviour
 {
     public float thrustForce = 20f;
+    public bool canThrust = true;
     public GameObject fire;
 
     private Rigidbody2D _rb;
@@ -16,23 +17,25 @@ public class Thruster : MonoBehaviour
             return _rb;
         }
     }
-    private bool _thrusting;
+    [SerializeField]
+    private bool _wantsToThrust;
+    private bool _shouldThrust => _wantsToThrust && canThrust;
 
     public void StartThrust()
     {
-        _thrusting = true;
-        if (fire) fire.SetActive(true);
+        _wantsToThrust = true;
     }
 
     public void StopThrust()
     {
-        _thrusting = false;
-        if (fire) fire.SetActive(false);
+        _wantsToThrust = false;
     }
 
     private void FixedUpdate()
     {
-        if (!_thrusting) return;
+        if (fire) fire.SetActive(_shouldThrust);
+        if (!_shouldThrust) return;
         rb.AddForceAtPosition(transform.up * thrustForce * Time.fixedDeltaTime, transform.position, ForceMode2D.Force);
     }
+
 }
