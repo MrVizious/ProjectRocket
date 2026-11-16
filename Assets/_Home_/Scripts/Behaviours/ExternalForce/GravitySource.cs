@@ -8,14 +8,13 @@ public class GravitySource : ExternalForceSource
 {
     public float furthestGravity, closestGravity;
     public CircleCollider2D areaTrigger;
-    public CircleCollider2D groundCollider;
     protected override void ApplyForceToEntities(float delta)
     {
         foreach (AffectedByExternalForce entity in affectedEntities)
         {
             float entityToSourceSqrDistance = Vector2.Distance(entity.transform.position, transform.position);
             float forceToApply = Math.Remap(value: entityToSourceSqrDistance,
-                                            groundCollider.radius * transform.lossyScale.x,
+                                            0,
                                             areaTrigger.radius * transform.lossyScale.x,
                                             closestGravity,
                                             furthestGravity,

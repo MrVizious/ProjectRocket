@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class PercentageBar : MonoBehaviour
     public Image visualPercentageImage;
     public Image targetPercentageImage;
     public float percentageChangeSpeed = 1f;
+    public float maxSecondsToReachTargetPercentage = 0.3f;
     private float currentPercentage = 1f;
     private float targetPercentage = 1f;
 
@@ -19,7 +21,8 @@ public class PercentageBar : MonoBehaviour
 
     private void Update()
     {
-        currentPercentage = Mathf.MoveTowards(currentPercentage, targetPercentage, percentageChangeSpeed * Time.deltaTime);
+        float changeSpeed = Mathf.Max(percentageChangeSpeed, Mathf.Abs(currentPercentage - targetPercentage) / maxSecondsToReachTargetPercentage);
+        currentPercentage = Mathf.MoveTowards(currentPercentage, targetPercentage, changeSpeed * Time.deltaTime);
         visualPercentageImage.fillAmount = currentPercentage;
     }
 }
