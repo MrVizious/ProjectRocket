@@ -1118,7 +1118,7 @@ GameObject:
   - component: {fileID: 682879614}
   - component: {fileID: 682879613}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1193,7 +1193,7 @@ GameObject:
   - component: {fileID: 691921670}
   - component: {fileID: 691921669}
   m_Layer: 5
-  m_Name: Image 2
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1598,7 +1598,7 @@ GameObject:
   - component: {fileID: 1173278233}
   - component: {fileID: 1173278237}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Lifebar Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1665,7 +1665,7 @@ Canvas:
   m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -237102927
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1173278236
@@ -1703,6 +1703,7 @@ MonoBehaviour:
   visualPercentageImage: {fileID: 47495107}
   targetPercentageImage: {fileID: 1852610722}
   percentageChangeSpeed: 0.05
+  maxSecondsToReachTargetPercentage: 0.3
 --- !u!1 &1272443107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,7 +2530,7 @@ Canvas:
   m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -47648029
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1734420895

@@ -69,10 +69,10 @@ Material:
     - _StencilWriteMask: 255
     - _UIMaskSoftnessX: 1
     - _UIMaskSoftnessY: 1
-    - _depth: 0
-    - _size: 0.01
+    - _depth: 0.44
+    - _size: 0.005
     - _starsDensity: 0.5
-    - _starsSpeed: 0.58
+    - _starsSpeed: 0.2
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
